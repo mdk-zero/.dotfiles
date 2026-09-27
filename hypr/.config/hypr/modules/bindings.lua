@@ -6,7 +6,7 @@
 local terminal = "ghostty"
 local fileManager = "nautilus"
 local menu = "rofi -show drun -theme ~/.config/rofi/config.rasi"
-local browser = "zen-browser"
+local browser = "firefox"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -149,3 +149,4 @@ hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("pkill -USR1 waybar"))
 
 -- Network Manager
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("ghostty -e impala"))
+hl.bind(mainMod .. " + CTRL + SHIFT + W", hl.dsp.exec_cmd("ghostty -e sudo impala"))
