@@ -12,3 +12,6 @@ npx skills add https://github.com/anthropics/skills --skill docx
 npx skills add https://github.com/anthropics/skills --skill xlsx
 npx skills add https://github.com/anthropics/skills --skill webapp-testing
 npx skills add https://github.com/anthropics/skills --skill doc-coauthoring
+npx skills add https://github.com/obra/superpowers --skill brainstorming
+npx skills add https://uizze.sh/
+npx skills add https://github.com/designed-by-ai/skills --skill design-mobile-apps

@@ -161,7 +161,7 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/late
 # java
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
@@ -171,11 +171,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# lampp
-alias xampp='sudo /opt/lampp/lampp'
-
-. "$HOME/.local/bin/env"
-
-# Added by flyctl installer
-export FLYCTL_INSTALL="/home/mdk0/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# Node Global
+export PATH="$HOME/.npm-global/bin:$PATH"
