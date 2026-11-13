@@ -173,3 +173,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Node Global
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+# pipx / uv tools (specify)
+export PATH="$HOME/.local/bin:$PATH"

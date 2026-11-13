@@ -161,6 +161,7 @@ dotfiles/
 │   ├── wsl.sh                 # Arch on WSL: terminal subset
 │   ├── repos.sh               # fzf picker to clone your GitHub repos into ~/dev
 │   ├── skills.sh              # install agent skills via `npx skills add`
+│   ├── mcp.sh                 # register Claude Code MCP servers (user scope)
 │   └── theme.sh               # switch the Gruvbox flavour across all configs
 ├── services/                  # systemd/udev units (not stowed — see below)
 ├── windows-terminal/          # Gruvbox schemes + tab-bar themes for settings.json (not stowed)
@@ -539,12 +540,13 @@ cat /sys/class/power_supply/BAT0/capacity          # battery percentage
 
 ## Other Scripts
 
-Neither of these is wired into the install scripts; run them on demand.
+None of these is wired into the install scripts; run them on demand.
 
 | Script | What it does |
 | --- | --- |
 | `scripts/repos.sh` | Lists your GitHub repos with `gh`, picks with `fzf` (falls back to a numbered menu), and clones the selection into `~/dev`. Prompts to skip / pull / re-clone when a repo is already there. |
 | `scripts/skills.sh` | Installs the agent skills used with this setup via `npx skills add`. |
+| `scripts/mcp.sh` | Registers the shadcn, Playwright, Spec Kit (`specify mcp`) and Supabase MCP servers in Claude Code at user scope. Also installs the Spec Kit CLI with `pipx` and Playwright's Chromium. Supabase signs in through OAuth: run `/mcp` in Claude Code afterwards. |
 
 ## Stow Commands Reference
 
