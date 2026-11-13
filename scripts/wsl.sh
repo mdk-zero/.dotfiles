@@ -13,7 +13,7 @@
 set -e
 
 DOTFILES_DIR="$HOME/dotfiles"
-DOTFILES_REPO="https://github.com/mdk-zero/dotfiles.git"
+DOTFILES_REPO="https://github.com/mdk-zero/.dotfiles.git"
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d_%H%M%S)"
 
 if ! grep -qi microsoft /proc/version 2>/dev/null; then

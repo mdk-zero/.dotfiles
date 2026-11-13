@@ -17,7 +17,7 @@ single command.
 Clone the repo first — every install script stows out of `~/dotfiles`:
 
 ```bash
-git clone git@github.com:mdk-zero/dotfiles.git ~/dotfiles
+git clone git@github.com:mdk-zero/.dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
