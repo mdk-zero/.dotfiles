@@ -1,0 +1,33 @@
+/* Gruvbox Light, on the Catppuccin slot names that style.css uses. */
+
+@define-color crust #ebdbb2;
+@define-color mantle #f2e5bc;
+@define-color base #fbf1c7;
+
+@define-color surface0 #ebdbb2;
+@define-color surface1 #d5c4a1;
+@define-color surface2 #bdae93;
+
+@define-color overlay0 #a89984;
+@define-color overlay1 #928374;
+@define-color overlay2 #7c6f64;
+
+@define-color subtext0 #665c54;
+@define-color subtext1 #504945;
+
+@define-color text #3c3836;
+
+@define-color lavender #076678;
+@define-color blue #076678;
+@define-color sapphire #458588;
+@define-color sky #689d6a;
+@define-color teal #427b58;
+@define-color green #79740e;
+@define-color yellow #b57614;
+@define-color peach #af3a03;
+@define-color maroon #cc241d;
+@define-color red #9d0006;
+@define-color mauve #8f3f71;
+@define-color pink #8f3f71;
+@define-color flamingo #b16286;
+@define-color rosewater #d65d0e;

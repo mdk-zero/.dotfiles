@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Rofi picker for the Catppuccin flavour. The actual switching lives in
+# Rofi picker for the Gruvbox flavour. The actual switching lives in
 # scripts/theme.sh at the root of the dotfiles repo; this is just a front-end.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "$(realpath -- "${BASH_SOURCE[0]}")")" && pwd)"
@@ -12,7 +12,7 @@ THEME_SH="$DOTFILES/scripts/theme.sh"
 ROFI_THEME="$HOME/.config/rofi/config.rasi"
 MARKER="$HOME/.config/hypr/modules/colors.lua"
 
-FLAVOURS=(mocha latte)
+FLAVOURS=(dark light)
 
 if [ ! -x "$THEME_SH" ]; then
   notify-send -u critical "Theme picker" "No executable theme.sh at $THEME_SH"
@@ -32,7 +32,7 @@ CURRENT_ROW=""
 
 for i in "${!FLAVOURS[@]}"; do
   flavour="${FLAVOURS[$i]}"
-  label="Catppuccin ${flavour^}"
+  label="Gruvbox ${flavour^}"
   if [[ "$flavour" == "$CURRENT" ]]; then
     label+="  (current)"
     CURRENT_ROW="$i"
@@ -56,7 +56,7 @@ chosen=$(echo -en "$MENU" | rofi "${ROFI_ARGS[@]}")
 flavour="${FLAVOURS[$chosen]}"
 
 if out=$("$THEME_SH" "$flavour" 2>&1); then
-  notify-send "Theme" "Switched to Catppuccin ${flavour^}"
+  notify-send "Theme" "Switched to Gruvbox ${flavour^}"
 else
   notify-send -u critical "Theme" "Failed to switch: $out"
 fi

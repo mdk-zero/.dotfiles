@@ -1,0 +1,14 @@
+[Unit]
+Description=Follow Windows light/dark mode with the Gruvbox flavour
+ConditionVirtualization=wsl
+
+[Service]
+ExecStart=%h/dotfiles/scripts/follow-windows-theme.sh
+Restart=on-failure
+RestartSec=5
+# The user manager's PATH has no Windows tools; theme.sh calls cmd.exe, reg.exe
+# and powershell.exe by name.
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/mnt/c/Windows/System32:/mnt/c/Windows/System32/WindowsPowerShell/v1.0
+
+[Install]
+WantedBy=default.target

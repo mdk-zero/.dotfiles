@@ -250,6 +250,16 @@ else
   echo "Zsh is already the default shell. Skipping."
 fi
 
+# Follow Windows' light/dark mode (PowerToys Light Switch, Win + Ctrl + Shift + D)
+# with the Gruvbox flavour. Needs systemd: [boot] systemd=true in /etc/wsl.conf.
+if systemctl --user show-environment &>/dev/null; then
+  systemctl --user enable --now "$DOTFILES_DIR/services/follow-windows-theme.service"
+  echo "✔ Following Windows light/dark mode"
+else
+  echo "systemd is not running — enable systemd in /etc/wsl.conf, then run:"
+  echo "  systemctl --user enable --now $DOTFILES_DIR/services/follow-windows-theme.service"
+fi
+
 echo ""
 echo "All configs installed!"
 echo "Start a new zsh session; tmux will install its plugins on first launch."

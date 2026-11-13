@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 # Follow whichever flavour scripts/theme.sh last set, so switching theme also
-# switches the wallpaper set. Falls back to the mocha set, then to an unsuffixed
-# "catppuccin" directory, for flavours with no wallpapers of their own.
+# switches the wallpaper set. Falls back to the dark set, to an unsuffixed
+# "gruvbox" directory, then to the old Catppuccin sets, so a flavour with no
+# wallpapers of its own still gets one.
 FLAVOUR_MARKER="$HOME/.config/hypr/modules/colors.lua"
 FLAVOUR=$(sed -nE 's/^local active = "([a-z]+)".*/\1/p' "$FLAVOUR_MARKER" 2>/dev/null | head -1)
 
 WALLPAPER_ROOT="$HOME/Pictures/Wallpapers"
 
-for candidate in "catppuccin-$FLAVOUR" "catppuccin-mocha" "catppuccin"; do
+for candidate in "gruvbox-$FLAVOUR" "gruvbox-dark" "gruvbox" "catppuccin-mocha" "catppuccin"; do
   if [ -d "$WALLPAPER_ROOT/$candidate" ]; then
     THEME="$candidate"
     break
   fi
 done
 
-WALLPAPER_DIR="$WALLPAPER_ROOT/${THEME:-catppuccin-mocha}"
+WALLPAPER_DIR="$WALLPAPER_ROOT/${THEME:-gruvbox-dark}"
 ROFI_THEME="$HOME/.config/rofi/image-picker.rasi"
 INDEX_FILE="$HOME/.cache/wallpaper-index"
 

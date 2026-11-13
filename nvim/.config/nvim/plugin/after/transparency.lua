@@ -54,6 +54,17 @@ local groups = {
 	"NotifyDEBUGBorder",
 }
 
-for _, name in ipairs(groups) do
-	make_transparent(name)
+local function apply()
+	for _, name in ipairs(groups) do
+		make_transparent(name)
+	end
 end
+
+apply()
+
+-- Loading a colorscheme repaints these backgrounds, e.g. the live flavour
+-- switch from `scripts/theme.sh`, so re-apply after every one.
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("transparency", { clear = true }),
+	callback = apply,
+})

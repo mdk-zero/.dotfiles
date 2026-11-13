@@ -1,7 +1,7 @@
 # Dotfiles
 
 Personal dotfiles managed with GNU Stow — an Arch Linux + Hyprland desktop,
-themed end to end with Catppuccin and switchable between Mocha and Latte with a
+themed end to end with Gruvbox and switchable between Dark and Light with a
 single command.
 
 ## Prerequisites
@@ -105,11 +105,11 @@ dotfiles/
 ├── btop/                      # btop system monitor
 │   └── .config/btop/
 │       ├── btop.conf
-│       └── themes/            # catppuccin-{mocha,latte}, rose-pine
+│       └── themes/            # gruvbox-{dark,light}, rose-pine
 ├── ghostty/                   # Ghostty terminal emulator
 │   └── .config/ghostty/
 │       ├── config
-│       ├── colors/            # catppuccin-{mocha,latte}.conf
+│       ├── colors/            # gruvbox-{dark,light}.conf
 │       └── shaders/           # custom GLSL cursor shaders
 ├── htop/                      # htop (no theme support — follows the terminal)
 │   └── .config/htop/htoprc
@@ -119,7 +119,7 @@ dotfiles/
 │   │   ├── hypridle.conf
 │   │   ├── hyprlock.conf
 │   │   ├── colors.conf        # hyprlang palette switcher line
-│   │   ├── colors/            # catppuccin-{mocha,latte}.conf
+│   │   ├── colors/            # gruvbox-{dark,light}.conf
 │   │   ├── modules/           # monitors, bindings, autostart, envs,
 │   │   │                      # decorations, animations, layout, misc,
 │   │   │                      # input, windowrules, colors
@@ -137,17 +137,19 @@ dotfiles/
 │       ├── config.rasi
 │       ├── image-picker.rasi  # thumbnail grid for the wallpaper picker
 │       ├── shared/            # colors.rasi (switcher), fonts.rasi
-│       └── colors/            # catppuccin-*, everforest, rose-pine
+│       └── colors/            # gruvbox-*, everforest, rose-pine
 ├── swaync/                    # Sway notification center
 │   └── .config/swaync/
 ├── tmux/                      # Tmux (TPM bootstraps itself on first launch)
-│   └── .config/tmux/tmux.conf
+│   └── .config/tmux/
+│       ├── tmux.conf
+│       └── colors/            # gruvbox-{dark,light}.conf (catppuccin/tmux palette)
 ├── waybar/                    # Waybar status bar
 │   └── .config/waybar/
 │       ├── config.jsonc
 │       ├── style.css
 │       ├── colors.css         # switcher line
-│       ├── colors/custom/     # catppuccin-*, everforest, rose-pine
+│       ├── colors/custom/     # gruvbox-*, everforest, rose-pine
 │       └── scripts/           # cava, launch, playerinfo, update
 ├── wlogout/                   # Wlogout menu
 │   └── .config/wlogout/
@@ -159,8 +161,9 @@ dotfiles/
 │   ├── wsl.sh                 # Arch on WSL: terminal subset
 │   ├── repos.sh               # fzf picker to clone your GitHub repos into ~/dev
 │   ├── skills.sh              # install agent skills via `npx skills add`
-│   └── theme.sh               # switch the Catppuccin flavour across all configs
+│   └── theme.sh               # switch the Gruvbox flavour across all configs
 ├── services/                  # systemd/udev units (not stowed — see below)
+├── windows-terminal/          # Gruvbox schemes + tab-bar themes for settings.json (not stowed)
 └── .php-cs-fixer.dist.php     # PHP-CS-Fixer defaults
 ```
 
@@ -211,7 +214,7 @@ Main modifier is **ALT**.
 | `ALT + CTRL + SPACE` | Wallpaper picker |
 | `ALT + SHIFT + SPACE` | Next wallpaper |
 | `ALT + CTRL + SHIFT + SPACE` | Rofi flavour picker |
-| `ALT + CTRL + T` | Toggle Mocha ⇄ Latte |
+| `ALT + CTRL + T` | Toggle Dark ⇄ Light |
 | `ALT + CTRL + M` | Toggle mirror ⇄ extend on HDMI-A-1 |
 | `ALT + CTRL + DELETE` | Logout menu |
 
@@ -249,45 +252,57 @@ this repo, editing here is what the running apps read.
 
 ```bash
 ./scripts/theme.sh              # show which flavour each config points at
-./scripts/theme.sh latte        # switch everything to Catppuccin Latte
-./scripts/theme.sh mocha        # ...or back to Mocha  (aliases: light / dark)
+./scripts/theme.sh light        # switch everything to Gruvbox Light
+./scripts/theme.sh dark         # ...or back to Gruvbox Dark
 ./scripts/theme.sh toggle       # flip between the two
 ```
 
 | Keybind | Action |
 | --- | --- |
 | `ALT + CTRL + SHIFT + SPACE` | Rofi flavour picker |
-| `ALT + CTRL + T` | Toggle Mocha ⇄ Latte |
+| `ALT + CTRL + T` | Toggle Dark ⇄ Light |
+| `prefix + C-t` (tmux) | Toggle Dark ⇄ Light — the switcher on WSL, where there is no Hyprland |
+| `Win + Ctrl + Shift + D` (WSL) | PowerToys Light Switch flips Windows' light/dark mode; `follow-windows-theme` switches the flavour to match |
 
 ### Where the colours live
 
 | App | Switcher line | Palettes |
 | --- | --- | --- |
-| btop | `btop.conf` → `color_theme` | `btop/themes/catppuccin-*.theme` |
-| ghostty | `config` → `config-file` | `ghostty/colors/catppuccin-*.conf` |
-| waybar | `colors.css` | `waybar/colors/custom/catppuccin-*.css` |
-| swaync | `colors.css` | `swaync/colors/catppuccin-*.css` |
-| wlogout | `colors.css` | `wlogout/colors/catppuccin-*.css` |
-| rofi | `shared/colors.rasi` | `rofi/colors/catppuccin-*.rasi` |
-| hyprlock | `hypr/colors.conf` | `hypr/colors/catppuccin-*.conf` |
+| btop | `btop.conf` → `color_theme` | `btop/themes/gruvbox-*.theme` (btop's built-in Gruvbox themes) |
+| ghostty | `config` → `config-file` | `ghostty/colors/gruvbox-*.conf` |
+| waybar | `colors.css` | `waybar/colors/custom/gruvbox-*.css` |
+| swaync | `colors.css` | `swaync/colors/gruvbox-*.css` |
+| wlogout | `colors.css` | `wlogout/colors/gruvbox-*.css` |
+| rofi | `shared/colors.rasi` | `rofi/colors/gruvbox-*.rasi` |
+| hyprlock | `hypr/colors.conf` | `hypr/colors/gruvbox-*.conf` |
 | hyprland borders | `modules/colors.lua` → `local active` | same file (both flavours inline) |
-| tmux | `tmux.conf` → `@catppuccin_flavor` | catppuccin/tmux plugin |
-| nvim | `plugins/theme.lua` → `local flavour` | catppuccin/nvim plugin |
+| tmux | `tmux.conf` → `source-file …/colors/gruvbox-*.conf` | `tmux/colors/gruvbox-*.conf` over the catppuccin/tmux status line |
+| nvim | `plugins/theme.lua` → `local flavour` | ellisonleao/gruvbox.nvim (`flavour` is the `'background'`) |
+| Windows Terminal (WSL) | `settings.json` → `"colorScheme"` and `"theme"` | `windows-terminal/gruvbox.json`, pasted into `"schemes"` / `"themes"` |
+| Windows itself (WSL) | registry: light/dark mode and accent colour | set by `theme.sh` (`apply_windows_appearance`) |
 
 `hypr/modules/colors.lua` doubles as the **canonical record of the active
 flavour** — `theme.sh`, `theme-picker.sh` and `wallpaper-picker.sh` all read the
 `local active = "..."` line out of it.
 
-The GTK apps (waybar, swaync, wlogout) import the raw 26-colour Catppuccin
-palette and map it to semantic names in their own `style.css`, so palette files
-stay pure colour definitions.
+The GTK apps (waybar, swaync, wlogout) import a raw 26-colour palette and map it
+to semantic names in their own `style.css`, so palette files stay pure colour
+definitions. The palette slots keep their Catppuccin names (`base`, `surface0`,
+`mauve`, …) from before the switch to Gruvbox, so no stylesheet had to change.
+Every value is a canonical Gruvbox colour: dark uses the bright accents, light the
+faded ones, and the neutral accents fill the secondary slots. hyprlock,
+`modules/colors.lua` and tmux's `@thm_*` palette use the same mapping.
+
+tmux keeps catppuccin/tmux for the status-line layout. That plugin assigns its
+`@thm_*` palette with `set -o`, which never overwrites an option that is already
+set, so the Gruvbox file sourced just before it wins.
 
 ### Wallpapers
 
 `hypr/scripts/wallpaper-picker.sh` reads the same flavour marker and pulls from
-`~/Pictures/Wallpapers/catppuccin-<flavour>`, falling back to `catppuccin-mocha`
-and then to a plain `catppuccin` directory for flavours with no wallpapers of
-their own. Wallpapers are set with `awww`. It has three modes:
+`~/Pictures/Wallpapers/gruvbox-<flavour>`, falling back to `gruvbox-dark`, a
+plain `gruvbox` directory, and then the old `catppuccin-mocha` / `catppuccin`
+sets for flavours with no wallpapers of their own. Wallpapers are set with `awww`. It has three modes:
 
 | Mode | Behaviour |
 | --- | --- |
@@ -301,9 +316,9 @@ re-running a switch does not churn it.
 
 ### System light/dark mode
 
-Latte puts the system into light mode and Mocha into dark mode. `theme.sh` sets:
+Light puts the system into light mode and dark into dark mode. `theme.sh` sets:
 
-| Setting | Latte | Mocha |
+| Setting | Light | Dark |
 | --- | --- | --- |
 | `org.gnome.desktop.interface color-scheme` | `prefer-light` | `prefer-dark` |
 | `org.gnome.desktop.interface gtk-theme` | `Catppuccin-BL-MB-Light` | `Catppuccin-BL-MB-Dark` |
@@ -333,8 +348,15 @@ gdbus call --session --dest com.mitchellh.ghostty \
   --method org.gtk.Actions.Activate reload-config "[]" "{}"
 ```
 
-**btop, rofi, wlogout, hyprlock and nvim pick up the new flavour the next time
-they launch** — there is no live-reload path for those. GTK3 apps read
+Running nvim instances are sent `SIGUSR1`; a `Signal` autocmd in
+`plugins/theme.lua` re-reads the `local flavour` line from disk, sets
+`'background'` to it and reloads `gruvbox`, and `plugin/after/transparency.lua` re-applies the
+transparent backgrounds on every `ColorScheme`. Instances started before that
+autocmd existed simply ignore the signal — both the TUI client and its
+`--embed` server survive it.
+
+**btop, rofi, wlogout and hyprlock pick up the new flavour the next time they
+launch** — there is no live-reload path for those. GTK3 apps read
 `settings.ini` at startup and need a restart too. `htop` has no custom theme
 support at all; with `color_scheme=0` it follows the terminal palette, so it
 changes with ghostty.
@@ -359,8 +381,8 @@ tmux source-file ~/.config/tmux/tmux.conf
 ```
 
 Clearing only `@thm_*` is not enough: the palette updates but the module colours
-stay baked, which shows up as e.g. the session name keeping light Mocha text on a
-light Latte background.
+stay baked, which shows up as e.g. the session name keeping the dark flavour's
+light text on the light flavour's background.
 
 Also note the palette exposes the base colour as **`@thm_bg`** — there is no
 `@thm_base`. Referencing a non-existent option expands to an empty string, which
@@ -371,13 +393,70 @@ leaves tmux's default green status bar showing.
 `theme.sh` degrades gracefully off a Hyprland desktop: it still rewrites every
 switcher line in the repo, then warns and skips the parts that need a graphical
 session (`gsettings`, the GTK themes, `awww`, waybar/swaync/hyprland reloads).
-On WSL that means btop, tmux and nvim follow the flavour as usual.
+On WSL that means btop, tmux and nvim follow the flavour as usual, and
+`prefix + C-t` in tmux runs the toggle.
+
+On WSL it also switches **Windows Terminal**, which paints the background
+behind the (transparent) nvim and the shell. The script finds `settings.json`
+through `cmd.exe` (`%LOCALAPPDATA%`, stable then Preview package) — set
+`WT_SETTINGS` to its path to override — and rewrites only a `"colorScheme"`
+that already names a Gruvbox (or the old Catppuccin) scheme. Windows Terminal
+hot-reloads the file. It has no built-in Gruvbox, so paste the `"schemes"` and
+`"themes"` from `windows-terminal/gruvbox.json` into the matching arrays once per
+machine; until then the script warns and leaves the terminal alone. The themes
+colour the tab bar and window chrome. `"theme"` is only switched when it already
+names a Gruvbox theme, so set it to `"Gruvbox Dark"` or `"Gruvbox Light"` once —
+leave it at `"system"` and the tab bar just follows Windows' light/dark mode.
+
+**Windows itself** follows too, as far as it can: Windows has no colour themes
+for apps, only a light/dark mode and an accent colour. Through one
+`powershell.exe` call `theme.sh` sets apps and the taskbar to light or dark
+(`AppsUseLightTheme` / `SystemUsesLightTheme`) and the accent to the Gruvbox
+blues — an eight-shade `AccentPalette` from `#83a598` through `#458588` to
+`#076678`, since Windows uses the lighter shades in dark mode and the darker ones
+in light mode. It then posts `WM_SETTINGCHANGE "ImmersiveColorSet"`, as the
+Settings app does, so running apps repaint; the taskbar and Start can need a
+sign-out to show a new accent. PowerShell takes a couple of seconds to start, so
+this step runs last, after tmux and nvim have already switched.
+
+### Following Windows (PowerToys Light Switch)
+
+On WSL, Windows' own light/dark mode drives the flavour too, so the PowerToys
+**Light Switch** shortcut (`Win + Ctrl + Shift + D`, or its schedule) switches
+tmux, nvim, btop and Windows Terminal along with Windows: light → Gruvbox Light,
+dark → Gruvbox Dark.
+
+`scripts/follow-windows-theme.sh` does this as a systemd user service
+(`services/follow-windows-theme.service`; WSL needs `[boot] systemd=true` in
+`/etc/wsl.conf`). It keeps one `powershell.exe` child that blocks on
+`RegNotifyChangeKeyValue` for `HKCU\…\Themes\Personalize` and prints
+`AppsUseLightTheme` at start and on every change — no polling, a change reaches
+WSL in well under 100 ms. When it no longer matches the active flavour it runs
+`theme.sh dark` / `light`. The start-up value also syncs a mode change made while
+WSL was not running.
+
+The other direction still works: `theme.sh` (and `prefix + C-t`) sets Windows'
+mode itself. That change comes back through the watcher, finds the flavour
+already matching, and stops there; `theme.sh` likewise skips its PowerShell step
+when Windows is already in the requested mode with the Gruvbox accent. The
+PowerShell child exits on its own when the WSL side goes away (it watches its
+stdin for EOF), so stopping the service leaves no stray Windows process.
+
+```bash
+systemctl --user enable --now ~/dotfiles/services/follow-windows-theme.service   # wsl.sh does this
+journalctl --user -fu follow-windows-theme                                         # watch it react
+```
+
+A switch takes a few seconds end to end, nearly all of it re-sourcing
+`tmux.conf` (TPM reloads every plugin). Windows Terminal's colours are written
+by the service, so they only follow while the WSL distro is running; opening a
+terminal starts it and the start-up sync catches up.
 
 ### Adding a flavour
 
 Add a palette file per app using the existing names, then add the flavour to
 `FLAVOURS` in `hypr/scripts/theme-picker.sh` and to the `case` in
-`scripts/theme.sh`. Mocha and Latte are complete; the `everforest` and
+`scripts/theme.sh`. Gruvbox Dark and Light are complete; the `everforest` and
 `rose-pine` files under `btop`, `waybar`, `swaync`, `wlogout` and `rofi` are
 older partial leftovers and are not wired into the switcher.
 
@@ -389,7 +468,8 @@ is not tree-folded.
 ## Services
 
 System services and daemon configurations live in `services/`. These are **not**
-managed by Stow and require manual installation.
+managed by Stow and require manual installation. `follow-windows-theme.service`
+is a WSL user unit, covered under [Following Windows](#following-windows-powertoys-light-switch).
 
 ### Auto Power Profile
 
@@ -484,7 +564,7 @@ Neither of these is wired into the install scripts; run them on demand.
 - TPM is **not** installed by the install scripts — `tmux.conf` clones it into `~/.local/share/tmux/plugins/tpm` and installs the plugin list on first launch
 - Both Arch scripts assume the repo is at `~/dotfiles`; `wsl.sh` clones it there if missing, `install.sh` does not
 - `install.sh` and `wsl.sh` write a hard-coded git `user.name` / `user.email` and generate an SSH key — edit those before running on a machine that is not the author's
-- Catppuccin is the consistent theme across all tools; switch flavour with `scripts/theme.sh` (see [Theming](#theming))
+- Gruvbox is the consistent theme across all tools; switch flavour with `scripts/theme.sh` (see [Theming](#theming))
 - Always review changes before committing updated configurations
 
 ### Known warts
